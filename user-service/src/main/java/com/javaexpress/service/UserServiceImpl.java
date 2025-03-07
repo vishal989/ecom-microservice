@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService{
 		User user = UserMappingHelper.map(userDto);
 		log.info("user {}",user);
 		User dbUser = userRepository.save(user);
-		//UserDto result = UserMappingHelper.map(dbUser);
-		return null;
+		UserDto result = UserMappingHelper.map(dbUser);
+		return result;
 	}
 
 	@Override

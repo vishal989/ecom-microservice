@@ -2,6 +2,7 @@ package com.javaexpress.helper;
 
 import org.springframework.beans.BeanUtils;
 
+import com.javaexpress.dto.CredentialDto;
 import com.javaexpress.dto.UserDto;
 import com.javaexpress.model.Credential;
 import com.javaexpress.model.User;
@@ -17,6 +18,7 @@ public interface UserMappingHelper {
 			Credential credential = new Credential();
 			BeanUtils.copyProperties(userDto.getCredentialDto(), credential);
 			
+			credential.setUser(user);
 			user.setCredential(credential);
 		}
 
@@ -24,8 +26,18 @@ public interface UserMappingHelper {
 	}
 
 	public static UserDto map(User user) {
-
-		return null;
+		if(user == null) {
+			return null;
+		}
+		UserDto userDto =new UserDto();
+		BeanUtils.copyProperties(user, userDto);
+		
+		if(user.getCredential() != null) {
+			CredentialDto credentialDto = new CredentialDto();
+			BeanUtils.copyProperties(user.getCredential(), credentialDto);
+			userDto.setCredentialDto(credentialDto);
+		}
+		return userDto;
 	}
 
 }

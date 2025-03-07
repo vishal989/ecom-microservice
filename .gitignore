@@ -1,0 +1,33 @@
+/.metadata/
+# Ignore target directory (compiled files)
+target/
+
+# Ignore IntelliJ IDEA project files
+.idea/
+*.iml
+
+# Ignore Eclipse project files
+.project
+.classpath
+.settings/
+
+# Ignore Maven & Gradle dependencies
+.mvn/
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Ignore logs
+*.log
+logs/
+*.gz
+
+# Ignore OS system files
+.DS_Store
+Thumbs.db
+
+# Ignore environment variables & secrets
+.env
+*.properties
+application.yml
+application-*.yml
+.metadata
