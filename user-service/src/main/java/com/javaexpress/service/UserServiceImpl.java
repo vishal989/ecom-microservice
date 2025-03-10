@@ -4,11 +4,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaexpress.dto.UserDto;
 import com.javaexpress.helper.UserMappingHelper;
+import com.javaexpress.model.Credential;
 import com.javaexpress.model.User;
 import com.javaexpress.repository.UserRepository;
 
@@ -47,8 +49,23 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserDto update(Integer userId, UserDto userDto) {
+		User existingUser = userRepository.findById(userDto.getUserId())
+			.orElseThrow(() ->new RuntimeException("User Not Found"));
 		
-		return null;
+		BeanUtils.copyProperties(userDto, existingUser,"credential");
+		
+		if(userDto.getCredentialDto() != null) {
+			Credential credentail = existingUser.getCredential();
+			
+			if(credentail == null) {
+				credentail = new Credential();
+				existingUser.setCredential(credentail);
+			}
+			BeanUtils.copyProperties(userDto.getCredentialDto(), credentail);
+		}
+		User updatedUser = userRepository.save(existingUser);
+		
+		return UserMappingHelper.map(updatedUser);
 	}
 
 	@Override

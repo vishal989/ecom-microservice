@@ -38,7 +38,7 @@ public class Category {
 	@OneToMany(mappedBy = "parentCategory",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Set<Category> subCategories;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name="parent_category_id")
 	private Category parentCategory;
 	
