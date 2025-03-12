@@ -49,8 +49,11 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserDto update(Integer userId, UserDto userDto) {
-		
-		return null;
+		// userId, credentialId
+		User dbUser = userRepository.findById(userId).orElseThrow(() -> new RuntimeException(""));
+		BeanUtils.copyProperties(userDto, dbUser,"credential");
+		User updatedUser = userRepository.save(dbUser);
+		return UserMappingHelper.map(updatedUser);
 	}
 
 	@Override
