@@ -1,15 +1,16 @@
 package com.javaexpress.dto;
 
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,6 +28,8 @@ public class UserDto {
 	@JsonProperty("credentail")
 	@JsonInclude(value=Include.NON_NULL)
 	private CredentialDto credentialDto;
+	
+	private Set<AddressDto> addressDtos;
 }
 
 // credential

@@ -49,23 +49,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserDto update(Integer userId, UserDto userDto) {
-		User existingUser = userRepository.findById(userDto.getUserId())
-			.orElseThrow(() ->new RuntimeException("User Not Found"));
 		
-		BeanUtils.copyProperties(userDto, existingUser,"credential");
-		
-		if(userDto.getCredentialDto() != null) {
-			Credential credentail = existingUser.getCredential();
-			
-			if(credentail == null) {
-				credentail = new Credential();
-				existingUser.setCredential(credentail);
-			}
-			BeanUtils.copyProperties(userDto.getCredentialDto(), credentail);
-		}
-		User updatedUser = userRepository.save(existingUser);
-		
-		return UserMappingHelper.map(updatedUser);
+		return null;
 	}
 
 	@Override
