@@ -14,4 +14,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	
 	Optional<User> findByCredentialUsername(String username);
 	
+	//@Query(name="select username,firstName from user",nativeQuery = true)
+	//List<Object[]> fetchUserInformation(Integer id);
 }
