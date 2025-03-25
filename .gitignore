@@ -1,6 +1,9 @@
 /.metadata/
 # Ignore target directory (compiled files)
 target/
+Notes
+00-springboot-hello
+01-springboot-hello-2
 
 # Ignore IntelliJ IDEA project files
 .idea/
